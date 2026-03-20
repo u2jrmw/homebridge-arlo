@@ -2,8 +2,8 @@
   "pluginAlias": "Arlo v2",
   "pluginType": "platform",
   "singular": true,
-  "headerDisplay": "The **Homebridge Arlo** plugin allows you to control your Arlo base station.",
-  "footerDisplay": "Please raise any issues on our [project page](https://github.com/wo-d/homebridge-arlo/issues).",
+  "headerDisplay": "**Arlo v2 (u2jrmw)** — fork of Homebridge Arlo with manual MFA support. Controls your Arlo base station.",
+  "footerDisplay": "Issues: [u2jrmw/homebridge-arlo](https://github.com/u2jrmw/homebridge-arlo/issues). Upstream: [wo-d/homebridge-arlo](https://github.com/wo-d/homebridge-arlo).",
   "schema": {
     "type": "object",
     "properties": {

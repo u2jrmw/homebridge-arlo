@@ -1,8 +1,8 @@
-# Homebridge-Arlo
+# Homebridge Arlo (u2jrmw fork)
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/wo-d/homebridge-arlo/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/wo-d/homebridge-arlo/tree/main)
+**Package:** `homebridge-arlo-u2jrmw` · **Upstream:** [wo-d/homebridge-arlo](https://github.com/wo-d/homebridge-arlo) (`homebridge-arlo-v2` on npm)
 
-<a href="https://www.npmjs.com/package/homebridge-arlo-v2"><img title="npm version" src="https://badgen.net/npm/v/homebridge-arlo-v2" ></a>
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/u2jrmw/homebridge-arlo/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/u2jrmw/homebridge-arlo/tree/main)
 
 Homebridge plugin for Arlo.
 Supports MFA either by **IMAP** (read the OTP from your inbox) or by entering the **6-digit code** in config as `mfaCode` (you still set `emailUser` to the address that matches your Arlo email MFA factor). Manual codes expire quickly—useful when you cannot use IMAP or for a one-off login.

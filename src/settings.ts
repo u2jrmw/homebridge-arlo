@@ -2,4 +2,4 @@
 export const PLATFORM_NAME = 'Arlo v2';
 
 // The name of our plugin.
-export const PLUGIN_NAME = 'homebridge-arlo-v2';
+export const PLUGIN_NAME = 'homebridge-arlo-u2jrmw';

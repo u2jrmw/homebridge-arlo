@@ -11,7 +11,7 @@
         "program": "${env:APPDATA}\\npm\\node_modules\\homebridge\\bin\\homebridge",
         "env": {
           "FORCE_COLOR": "1",
-          "DEBUG": "homebridge-arlo-v2"
+          "DEBUG": "homebridge-arlo-u2jrmw"
         }
       }
     }

@@ -1,9 +1,9 @@
 {
-  "displayName": "Arlo v2",
-  "name": "homebridge-arlo-v2",
-  "version": "2.1.12",
-  "description": "Arlo plugin for homebridge",
-  "author": "Will O'Donnell",
+  "displayName": "Arlo v2 (u2jrmw)",
+  "name": "homebridge-arlo-u2jrmw",
+  "version": "2.1.13",
+  "description": "Homebridge plugin for Arlo (fork with manual MFA / custom arlo-api). Based on homebridge-arlo-v2 by Will O'Donnell.",
+  "author": "u2jrmw (forked from Will O'Donnell)",
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf ./dist && tsc",
@@ -23,8 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/wo-d/homebridge-arlo"
+    "url": "git+https://github.com/u2jrmw/homebridge-arlo.git"
   },
+  "bugs": {
+    "url": "https://github.com/u2jrmw/homebridge-arlo/issues"
+  },
+  "homepage": "https://github.com/u2jrmw/homebridge-arlo#readme",
   "engines": {
     "homebridge": ">=1.6.0",
     "node": ">14"
