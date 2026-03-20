@@ -25,7 +25,7 @@ From GitHub (global install for Homebridge):
 sudo npm install -g "git+https://github.com/u2jrmw/homebridge-arlo.git#main"
 ```
 
-`arlo-api` is pulled over **HTTPS** so `sudo` does not need GitHub SSH keys. If a global install still tries SSH and fails, check root’s Git config (`sudo git config --global -l`) for `url.*.insteadOf` rules that rewrite `https://github.com/` to SSH, or install as your normal user (e.g. Homebridge via `nvm`) without `sudo`.
+The bundled **arlo-api** dependency is installed from a **GitHub `.tar.gz` archive** (plain HTTPS), not `git+ssh`, so global `sudo npm install` does not need Git or SSH keys for that package. The plugin repo itself still clones with `git` for `git+https://…/homebridge-arlo.git` — if that step fails, fix Xcode Command Line Tools or install from a local `npm pack` tarball instead.
 
 ## Development
 
