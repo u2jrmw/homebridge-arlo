@@ -19,6 +19,13 @@
         "placeholder": "Arlo password",
         "required": true
       },
+      "mfaCode": {
+        "type": "string",
+        "title": "MFA code (manual)",
+        "placeholder": "6-digit code from Arlo email",
+        "required": false,
+        "description": "Optional. If set, this one-time code is used instead of reading email via IMAP. You still need **MFA Email Address** below so the plugin can pick the correct MFA factor. Arlo OTPs expire quickly—update this when Homebridge restarts and prompts for a new login, or leave blank and use IMAP instead."
+      },
       "emailUser": {
         "type": "string",
         "title": "MFA Email Address",
@@ -29,19 +36,19 @@
         "type": "string",
         "title": "Email Password",
         "placeholder": "Email password",
-        "required": true
+        "required": false
       },
       "emailServer": {
         "type": "string",
         "title": "Email IMAP Server",
         "placeholder": "Email IMAP server. E.g. `imap.gmail.com`",
-        "required": true
+        "required": false
       },
       "emailImapPort": {
         "type": "number",
         "title": "Email IMAP Port",
         "placeholder": "Email IMAP server port, E.g. 993",
-        "required": true
+        "required": false
       },
       "enableRetry": {
         "title": "Enable Retry",
@@ -74,10 +81,11 @@
       "expanded": true,
       "items": [
         {
-          "description": "Enter your credentials below.",
+          "description": "Enter your credentials below. Use either **MFA code (manual)** or IMAP email settings—not both required.",
           "items": [
             "arloUser",
             "arloPassword",
+            "mfaCode",
             "emailUser",
             "emailPassword",
             "emailServer",

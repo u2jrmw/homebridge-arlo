@@ -43,7 +43,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "arlo-api": "^1.0.11"
+    "arlo-api": "github:u2jrmw/arlo-api#f2f6f8d"
   },
   "prettier": {
     "trailingComma": "es5",

@@ -15,6 +15,14 @@ import { ArloDoorbellAccessory } from './arlo-doorbell-accessory';
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
 import { DisplayName } from './utils/utils';
 
+function normalizeMfaCode(value: unknown): string | undefined {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+  const trimmed = String(value).trim();
+  return trimmed === '' ? undefined : trimmed;
+}
+
 export class ArloPlatform implements DynamicPlatformPlugin {
   public readonly Service: typeof Service;
   public readonly Characteristic: typeof Characteristic;
@@ -42,16 +50,67 @@ export class ArloPlatform implements DynamicPlatformPlugin {
       return;
     }
 
+    const mfaCode = normalizeMfaCode(config.mfaCode);
+    const useManualMfa = mfaCode !== undefined;
+
+    if (useManualMfa && !/^\d{6}$/.test(mfaCode)) {
+      this.log.error(
+        'mfaCode must be exactly 6 digits (the one-time code Arlo sends by email).'
+      );
+      return;
+    }
+
+    if (!config.arloUser || !config.arloPassword) {
+      this.log.error('arloUser and arloPassword are required.');
+      return;
+    }
+
+    if (!config.emailUser) {
+      this.log.error(
+        'emailUser is required (must match your email MFA factor in Arlo).'
+      );
+      return;
+    }
+
+    let emailImapPort = 0;
+    let emailPassword = '';
+    let emailServer = '';
+
+    if (!useManualMfa) {
+      if (
+        !config.emailPassword ||
+        !config.emailServer ||
+        config.emailImapPort === undefined ||
+        config.emailImapPort === ''
+      ) {
+        this.log.error(
+          'Provide mfaCode for manual OTP, or emailPassword, emailServer, and emailImapPort for IMAP MFA.'
+        );
+        return;
+      }
+      emailImapPort = parseInt(String(config.emailImapPort), 10);
+      emailPassword = config.emailPassword as string;
+      emailServer = config.emailServer as string;
+      if (!Number.isFinite(emailImapPort) || emailImapPort <= 0) {
+        this.log.error('emailImapPort must be a positive number.');
+        return;
+      }
+    } else {
+      // Unused when mfaCode is set; satisfies arlo-api config shape.
+      emailImapPort = 993;
+    }
+
     this.config = {
       arloPassword: config.arloPassword as string,
       arloUser: config.arloUser as string,
       debug: config.debug === true,
-      emailImapPort: parseInt(config.emailImapPort as string),
-      emailPassword: config.emailPassword as string,
-      emailServer: config.emailServer as string,
+      emailImapPort,
+      emailPassword,
+      emailServer,
       emailUser: config.emailUser as string,
       enableRetry: config.enableRetry === true,
       retryInterval: parseInt(config.retryInterval as string),
+      ...(useManualMfa ? { mfaCode } : {}),
     };
 
     if (this.config.enableRetry) {

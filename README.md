@@ -5,7 +5,9 @@
 <a href="https://www.npmjs.com/package/homebridge-arlo-v2"><img title="npm version" src="https://badgen.net/npm/v/homebridge-arlo-v2" ></a>
 
 Homebridge plugin for Arlo.
-Includes email MFA support. Please read the underlying library [arlo-api's README](https://github.com/wo-d/arlo-api/blob/main/README.md#authentication) for information about configuring MFA correctly.
+Supports MFA either by **IMAP** (read the OTP from your inbox) or by entering the **6-digit code** in config as `mfaCode` (you still set `emailUser` to the address that matches your Arlo email MFA factor). Manual codes expire quickly—useful when you cannot use IMAP or for a one-off login.
+
+This plugin depends on [u2jrmw/arlo-api](https://github.com/u2jrmw/arlo-api) (fork of [wo-d/arlo-api](https://github.com/wo-d/arlo-api)) for the MFA behaviour above. See the fork README for configuration details.
 
 Feel free to fork or make pull requests with additional features.
 
@@ -65,5 +67,7 @@ Update homebridge configuration file. Default location in Windows `C:\Users\{use
   "accessories": []
 }
 ```
+
+For **manual MFA** (no IMAP), omit `emailPassword`, `emailServer`, and `emailImapPort`, and set a fresh 6-digit `mfaCode` from your Arlo email when the plugin needs to log in again.
 
 Included is a VSCode launch profile for debugging the plugin. Courtesy of [jeff-winn](https://github.com/jeff-winn/homebridge-veml7700-sensor). Attach some breakpoints and run the `Launch` profile.
