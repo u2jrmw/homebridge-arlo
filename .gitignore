@@ -92,7 +92,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist/ is committed so `npm install -g` from GitHub works (no devDependencies / prepare on global install).
 
 # Gatsby files
 .cache/

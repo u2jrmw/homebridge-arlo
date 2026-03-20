@@ -27,6 +27,8 @@ sudo npm install -g "git+https://github.com/u2jrmw/homebridge-arlo.git#main"
 
 The bundled **arlo-api** dependency is installed from a **GitHub `.tar.gz` archive** (plain HTTPS), not `git+ssh`, so global `sudo npm install` does not need Git or SSH keys for that package. The plugin repo itself still clones with `git` for `git+https://…/homebridge-arlo.git` — if that step fails, fix Xcode Command Line Tools or install from a local `npm pack` tarball instead.
 
+**Not listed under Plugins in Homebridge UI?** Homebridge loads `dist/index.js`; without `dist/` in the GitHub tree, the plugin cannot start. This repo commits `dist/` on `main` for installs from git. Reinstall after pulling updates, then restart Homebridge. If it still missing, Homebridge may be using a different Node than `sudo npm` (compare `which node` with the Node path in Homebridge status/logs).
+
 ## Development
 
 ### Debugging
